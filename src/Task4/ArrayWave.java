@@ -12,7 +12,7 @@ public class ArrayWave {
         int[] nums = {1,3,2,5,1};
         int[] nums2 = {1,7,2,4,5};
         int[] nums3 = {1,4,2,1,9,8};
-        System.out.println(arraywave(nums ));
+        System.out.println(arraywave(nums));
     }
 
     public static boolean arraywave(int[] nums) {
