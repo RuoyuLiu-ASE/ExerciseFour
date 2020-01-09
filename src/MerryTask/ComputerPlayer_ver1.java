@@ -51,17 +51,19 @@ public class ComputerPlayer_ver1 {
         System.out.println();
     }
 
-    public boolean validMove() {
+    public boolean validMove(char piece) {
         int x = player.getRow();
         int y = player.getColumn();
-        if (x < 0 || x > 2 || y < 0 || y > 2 || (chessBoard[x][y]-'X' != 0 && chessBoard[x][y]-'O' != 0)) {
+        if (x < 0 || x > 2 || y < 0 || y > 2 || piece == 'X' || piece == 'O') {
             System.out.println("Move is not valid!");
-            System.out.println(chessBoard[x][y] - 'X');
-            System.out.println(chessBoard[x][y] - 'Y');
+           // System.out.println(chessBoard[x][y] - 'X');
+           // System.out.println(chessBoard[x][y] - 'Y');
+           // System.out.println('_'+0);
             return false;
         }
-        System.out.println(chessBoard[x][y] - 'X');
-        System.out.println(chessBoard[x][y] - 'Y');
+       // System.out.println(chessBoard[x][y] - 'X');
+       // System.out.println(chessBoard[x][y] - 'Y');
+        //System.out.println('-'+0);
         return true;
     }
     public void easyMode() {
@@ -101,10 +103,12 @@ public class ComputerPlayer_ver1 {
         for (int i = 0; i < 3; i++) {
             for (int m = 0; m < 3; m++) {
                 if (chessBoard[i][m] == 'X') {
-                    row++;
+                    col++;
+                }else{
+                    col = 0;
                 }
-                if (3 == row) {
-                    break;
+                if (3 == col) {
+                    return true;
                 }
             }
         }
@@ -112,15 +116,17 @@ public class ComputerPlayer_ver1 {
         for (int i = 0; i < 3; i++) {
             for (int m = 0; m < 3; m++) {
                 if (chessBoard[m][i] == 'X') {
-                    col++;
+                    row++;
+                }else {
+                    row = 0; //为了防止直角的情况下的误判
                 }
-                if (3 == col) {
-                    break;
+                if (3 == row) {
+                    return true;
                 }
             }
         }
 
-        if (row == 3 || col == 3 || line_main == 3 || line_sub == 3) {
+        if (line_main == 3 || line_sub == 3) {
             return true;
         }
         else{
@@ -149,10 +155,12 @@ public class ComputerPlayer_ver1 {
         for (int i = 0; i < 3; i++) {
             for (int m = 0; m < 3; m++) {
                 if (chessBoard[i][m] == 'O') {
-                    row++;
+                    col++;
+                }else {
+                    col = 0;
                 }
-                if (3 == row) {
-                    break;
+                if (3 == col) {
+                    return true;
                 }
             }
         }
@@ -160,15 +168,17 @@ public class ComputerPlayer_ver1 {
         for (int i = 0; i < 3; i++) {
             for (int m = 0; m < 3; m++) {
                 if (chessBoard[m][i] == 'O') {
-                    col++;
+                    row++;
+                }else {
+                    row = 0;
                 }
-                if (3 == col) {
-                    break;
+                if (3 == row) {
+                    return true;
                 }
             }
         }
 
-        if (row == 3 || col == 3 || line_main == 3 || line_sub == 3) {
+        if (line_main == 3 || line_sub == 3) {
             return true;
         }
         else{
@@ -177,18 +187,21 @@ public class ComputerPlayer_ver1 {
     }
 
     public boolean overOrNot() {
-        if (size == CAPACITY) {
-            System.out.println("A STRANGE GAME.");
-            System.out.println("THE ONLY WINNING MOVE IS NOT TO PLAY.");
-            return true; // game over
-        } else if (true == humanwin) {
-            System.out.println("Congratulations, you win!");
-            return true;
-        } else if (true == computerwin) {
-            System.out.println("Sorry, you lose!");
+        if (size == CAPACITY || true == humanwin || true == computerwin) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public void result() {
+        if (size == CAPACITY) {
+            System.out.println("A STRANGE GAME.");
+            System.out.println("THE ONLY WINNING MOVE IS NOT TO PLAY.");
+        } else if (true == humanwin) {
+            System.out.println("Congratulations, you win!");
+        } else if (true == computerwin) {
+            System.out.println("Sorry, you lose!");
         }
     }
 

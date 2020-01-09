@@ -29,8 +29,6 @@ public class HumanPlayer {
         String m =  move.next();
         x = m.charAt(1) - '1'; //Transfer from char to number corresponding char
         y = m.charAt(0) - 'A';
-        chessBoard[x][y] = 'X';
-        size++;
     }
 
     //Get the move of x
@@ -41,6 +39,14 @@ public class HumanPlayer {
     //Get the move of y
     public int getColumn() {
         return y;
+    }
+
+    public char getPiece() {
+        return chessBoard[x][y];
+    }
+    public void placePiece() {
+        chessBoard[x][y] = 'X';
+        size++;
     }
 }
 

@@ -1,7 +1,5 @@
 package MerryTask;
 
-import java.security.PublicKey;
-
 /**
  * @author: Alan
  * @create: 2019-12-27 21:03
@@ -23,7 +21,7 @@ public class Application {
         String flag = ""; //represent the level
         int anotherRound = 0;
         String playOrNot;
-   //     boolean valid;
+        char piece;
 
         game.startGame();
         playOrNot = player.playOrNot();
@@ -38,15 +36,19 @@ public class Application {
             }
             game.makeMoveMessage();
             player.startGame();
-            if ("easy".equals(flag)) {
-                game.easyMode();
-            } else if ("hard".equals(flag)) {
-                game.hardMode();
-            }
-            if(game.validMove()) {
+            piece = player.getPiece();
+            player.placePiece();
+            if(game.validMove(piece)) {
+                if ("easy".equals(flag)) {
+                    game.easyMode();
+                } else if ("hard".equals(flag)) {
+                    game.hardMode();
+                }
                 humanwin = game.judge(player);
                 computerwin = game.judge(game);
                 if (true == game.overOrNot()) {
+                    game.printBoardPlaying();
+                    game.result();
                     game.startGame();
                     playOrNot = player.playOrNot();
                     anotherRound = 0;
