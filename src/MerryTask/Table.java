@@ -1,3 +1,4 @@
+/*
 package MerryTask;
 
 import static MerryTask.Application.*;
@@ -8,6 +9,7 @@ import static MerryTask.Application.*;
  * @version:
  * @important value:
  */
+/*
 public class Table {
 
     // Draw the table
@@ -30,3 +32,4 @@ public class Table {
         System.out.println();
     }
 }
+*/

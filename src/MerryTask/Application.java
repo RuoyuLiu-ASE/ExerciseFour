@@ -1,5 +1,7 @@
 package MerryTask;
 
+import java.security.PublicKey;
+
 /**
  * @author: Alan
  * @create: 2019-12-27 21:03
@@ -8,24 +10,54 @@ package MerryTask;
  * @important value:
  */
 public class Application {
-    public static char[][] chessBoard =  new char[3][3];
+    public static char[][] chessBoard = new char[3][3];
     public static int size = 0;   // 已经下的棋数 Already done
     public static final int CAPACITY = 9;     //总共可以下的棋数  the number of chess
+    public static boolean humanwin = false;
+    public static boolean computerwin = false;
+
+    public static ComputerPlayer_ver1 game = new ComputerPlayer_ver1();
+    public static HumanPlayer player = new HumanPlayer();
 
     public static void main(String[] args) {
-        Table table = new Table();
-        ComputerPlayer game = new ComputerPlayer();
-        HumanPlayer player = new HumanPlayer();
-        game.startGame();
-        table.printBorad();
+        String flag = ""; //represent the level
+        int anotherRound = 0;
+        String playOrNot;
+   //     boolean valid;
 
-        while (true) {
+        game.startGame();
+        playOrNot = player.playOrNot();
+
+        while ("yes".equals(playOrNot)) {
+            if (0 == anotherRound) {
+                game.initTable();
+                game.chooseLevel();
+                flag = player.levelChoose();
+                game.printTable();
+                anotherRound = 1;
+            }
+            game.makeMoveMessage();
             player.startGame();
-            table.printBoardPlaying();
-        }
+            if ("easy".equals(flag)) {
+                game.easyMode();
+            } else if ("hard".equals(flag)) {
+                game.hardMode();
+            }
+            if(game.validMove()) {
+                humanwin = game.judge(player);
+                computerwin = game.judge(game);
+                if (true == game.overOrNot()) {
+                    game.startGame();
+                    playOrNot = player.playOrNot();
+                    anotherRound = 0;
+                } else {
+                    game.printBoardPlaying();
+                }
+            }
 /*
             player.startGame();
             table.printBoardPlaying();
 */
+        }
     }
 }

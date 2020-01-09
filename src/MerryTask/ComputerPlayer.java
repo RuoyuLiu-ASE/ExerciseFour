@@ -1,3 +1,4 @@
+/*
 package MerryTask;
 
 import java.util.Arrays;
@@ -11,6 +12,7 @@ import static MerryTask.Application.*;
  * @version:
  * @important value:
  */
+/*
 public class ComputerPlayer {
     private String level;
     public ComputerPlayer() {
@@ -60,3 +62,4 @@ public class ComputerPlayer {
     }
 
 }
+*/
