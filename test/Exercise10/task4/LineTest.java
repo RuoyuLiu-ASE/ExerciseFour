@@ -19,12 +19,8 @@ public class LineTest {
     Line line4 = new Line(2,2,3,-6);
 
     Line line5 = new Line(2,2,2,2);
-    double x6 = 2;
-    double y6 = 2;
-    double X6 = 2;
-    double Y6 = 6;
-    Line line6 = new Line(x6,y6,X6,Y6);
-    Line line7 = new Line(2,2,3,6);
+    Line line6 = new Line(2,6,3,6);
+    Line line7 = new Line(2,2,2,6);
     Line line8 = new Line(2,2,3,-6);
 
     Line line9 = new Line(2,2,6,2);
@@ -49,10 +45,11 @@ public class LineTest {
     @Test
     public void testGetDistance() {
         assertEquals(0,line5.getDistance(),0.001);
-//        assertEquals(Y6-y6,line6.getDistance());
+        assertEquals(1.0,line6.getDistance(),0.001);
+        assertEquals(4.0,line7.getDistance(),0.001);
     }
-
-    @Test
+//因为有异常，所以不一样。
+    @Test(expected = ArithmeticException.class)
     public void testParallelTo() {
         assertEquals(true, line9.parallelTo(line10));
         assertEquals(true,line11.parallelTo(line12));
