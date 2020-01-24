@@ -1,5 +1,7 @@
 package Exercise11.Task1;
 
+import java.io.PrintStream;
+
 /**
  * @author: Alan
  * @create: 2020-01-21 20:01
@@ -19,5 +21,11 @@ public class ConsoleLogger implements Logger {// This is the Concrete Products w
     public void debug(String message) {
         System.out.println(message);
     }
+
+    private void log(PrintStream stream, String message) {
+        stream.println(message);
+        nxtMessageld++;
+    }
+
 }
 
