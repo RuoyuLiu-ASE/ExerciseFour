@@ -17,7 +17,7 @@ public class TestImplementation {   //This is a test
         logger.error("This is the test! Error Message!");
 */
 
-//This is the test for task 3
+/*//This is the test for task 3
         ConsoleLoggerFactory consoleLoggerFactory = new ConsoleLoggerFactory();
         Logger MAINLOGGER = consoleLoggerFactory.getLogger("MAINLOGGER");
         Logger FACTORYLOGGER = consoleLoggerFactory.getLogger("FACTORYLOGGER");
@@ -27,5 +27,17 @@ public class TestImplementation {   //This is a test
 
         FACTORYLOGGER.debug("Debug Message!");
         FACTORYLOGGER.error("Error Message!");
+    }*/
+
+// This is the test for task 4
+        Logger mainLogger = LoggerManager.getLogger("MAINLOGGER");
+        Logger factoryLogger = LoggerManager.getLogger("FACTORYLOGGER");
+
+        mainLogger.error("Test 4: error Message!");
+        mainLogger.debug("Test 4: debug Message!");
+
+        factoryLogger.error("Test 4: error Message!");
+        factoryLogger.debug("Test 4: debug Message!");
+
     }
 }

@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class ConsoleLoggerFactory implements LoggerFactory {
     
-    private HashMap<String,Logger> cache = new HashMap<String, Logger>();
+    private Map<String,Logger> cache = new HashMap<String, Logger>();
 
     public ConsoleLoggerFactory() {
         
@@ -21,7 +21,7 @@ public class ConsoleLoggerFactory implements LoggerFactory {
 
     @Override
     public Logger getLogger(String name) {
-        if (cache.containsKey(name)) {
+/*        if (cache.containsKey(name)) {
             return cache.get(name);
         } else {
             //cache.put(name,new Logger());
@@ -36,6 +36,20 @@ public class ConsoleLoggerFactory implements LoggerFactory {
                     System.out.println(message+" "+name);
                 }
             };
+        }*/
+        if (!cache.containsKey(name)) {
+            cache.put(name, new Logger() {
+                @Override
+                public void error(String message) {
+                    System.err.println(message+" "+name);
+                }
+
+                @Override
+                public void debug(String message) {
+                    System.out.println(message+" "+name);
+                }
+            });
         }
+        return cache.get(name);
     }
 }
